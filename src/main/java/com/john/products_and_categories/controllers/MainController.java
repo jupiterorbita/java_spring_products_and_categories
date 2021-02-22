@@ -27,7 +27,12 @@ public class MainController {
 	private CategoryService cateServ;
 	
 	@GetMapping("/")
-	public String index() {
+	public String index(Model x) {
+		List<Product> allProducts = prodServ.allProducts();
+		x.addAttribute("allProducts", allProducts);
+		
+		List<Category> allCategories = cateServ.allCategories();
+		x.addAttribute("allCategories", allCategories);
 		return "index.jsp";
 	}
 	
